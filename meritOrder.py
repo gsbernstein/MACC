@@ -1,6 +1,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.font_manager
 
 # Constants for column names
 PROJECT_COLUMN = 'Project'
@@ -41,6 +42,15 @@ def merit_order_curve():
     ax = plt.gca()
     fmtr = matplotlib.ticker.StrMethodFormatter('{x:,.0f}')
     ax.xaxis.set_major_formatter(fmtr)
+
+    font_dirs = ['/Users/greg/Library/Fonts/']
+    font_files = matplotlib.font_manager.findSystemFonts(fontpaths=font_dirs, fontext='ttf')
+    for font_file in font_files:
+        matplotlib.font_manager.fontManager.addfont(font_file)
+
+    # specify the custom font to use
+    plt.rcParams['font.family'] = 'sans-serif'
+    plt.rcParams['font.sans-serif'] = 'Exo 2'
 
     plt.xlabel("Cumulative MT CO2")
     plt.ylabel("$/MT CO2")
