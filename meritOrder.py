@@ -1,3 +1,4 @@
+import matplotlib
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -37,10 +38,9 @@ def merit_order_curve():
     plt.xlim(0, df[CARBON_REDUCTION].sum())
     plt.ylim(df[MARGINAL_COSTS_COLUMN].min() - 20, df[MARGINAL_COSTS_COLUMN].max() + 20)
 
-#    projects = df[PROJECT_COLUMN].values.tolist()
-#    plt.legend(fig.patches, projects, loc="upper left", ncol=1)
-    plt.ticklabel_format(style='plain')
-#    plt.xaxis.set_major_formatter(mpl.ticker.StrMethodFormatter('{x:,.0f}'))
+    ax = plt.gca()
+    fmtr = matplotlib.ticker.StrMethodFormatter('{x:,.0f}')
+    ax.xaxis.set_major_formatter(fmtr)
 
     plt.xlabel("Cumulative MT CO2")
     plt.ylabel("$/MT CO2")
