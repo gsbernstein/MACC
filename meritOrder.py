@@ -27,7 +27,7 @@ def merit_order_curve():
     plt.figure(figsize=(20, 12))
     plt.rcParams["font.size"] = 16
 
-    colors = ["yellow", "limegreen", "skyblue", "pink", "limegreen", "black", "orange", "grey", "maroon"]
+    colors = ["#e26c38", "#a7a7a7", "#5f6269"]
     xpos = df[X_POS_COLUMN].values.tolist()
     y = df[MARGINAL_COSTS_COLUMN].values.tolist()
     w = df[CARBON_REDUCTION].values.tolist()
@@ -35,10 +35,12 @@ def merit_order_curve():
     fig = plt.bar(xpos, height=y, width=w, fill=True, color=colors)
 
     plt.xlim(0, df[CARBON_REDUCTION].sum())
-    plt.ylim(0, df[MARGINAL_COSTS_COLUMN].max() + 20)
+    plt.ylim(df[MARGINAL_COSTS_COLUMN].min() - 20, df[MARGINAL_COSTS_COLUMN].max() + 20)
 
-    # projects = df[PROJECT_COLUMN].values.tolist()
-    # plt.legend(fig.patches, projects, loc="upper left", ncol=1)
+#    projects = df[PROJECT_COLUMN].values.tolist()
+#    plt.legend(fig.patches, projects, loc="upper left", ncol=1)
+    plt.ticklabel_format(style='plain')
+#    plt.xaxis.set_major_formatter(mpl.ticker.StrMethodFormatter('{x:,.0f}'))
 
     plt.xlabel("Cumulative MT CO2")
     plt.ylabel("$/MT CO2")
